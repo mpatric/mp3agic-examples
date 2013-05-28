@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
+import com.mpatric.mp3agic.app.FileUtils;
 import com.mpatric.mp3agic.BaseException;
 import com.mpatric.mp3agic.BufferTools;
 import com.mpatric.mp3agic.ID3Wrapper;
@@ -24,9 +25,9 @@ public class Mp3Pics extends BaseApp {
 			mp3file = new Mp3File(filename);
 			extractPics();
 		} catch (BaseException e) {
-			printError("ERROR processing " + extractFilename(filename) + " - " + e.getDetailedMessage());
+			printError("ERROR processing " + FileUtils.extractFilename(filename) + " - " + e.getDetailedMessage());
 		} catch (Exception e) {
-			printError("ERROR processing " + extractFilename(filename) + " - " + formatExceptionMessage(e));
+			printError("ERROR processing " + FileUtils.extractFilename(filename) + " - " + formatExceptionMessage(e));
 		}
 	}
 	
@@ -59,7 +60,7 @@ public class Mp3Pics extends BaseApp {
 		if ((idx = mimeType.indexOf('/')) > 0) extension = "." + mimeType.substring(idx + 1).toLowerCase();
 		else mimeType = extension = "." + mimeType.toLowerCase(); 
 		ID3Wrapper id3Wrapper = new ID3Wrapper(mp3file.getId3v1Tag(), mp3file.getId3v2Tag());
-		String path = extractPath(mp3file.getFilename());
+		String path = FileUtils.extractPath(mp3file.getFilename());
 		String baseFilename = path + toCompressedString(id3Wrapper.getArtist()) + "-" + toCompressedString(id3Wrapper.getAlbum());
 		String filename;
 		if (!fileExists(filename = baseFilename + extension)) return filename;

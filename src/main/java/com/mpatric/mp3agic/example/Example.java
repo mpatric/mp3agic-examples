@@ -14,9 +14,9 @@ import com.mpatric.mp3agic.UnsupportedTagException;
 
 public class Example {
 
-	public static void main(String[] args) throws UnsupportedTagException, InvalidDataException, IOException, NotSupportedException {
-		Mp3File mp3file = new Mp3File("src/test/resources/v1andv23tagswithalbumimage.mp3");
-		
+    public static void main(String[] args) throws UnsupportedTagException, InvalidDataException, IOException, NotSupportedException {
+        Mp3File mp3file = new Mp3File("src/test/resources/v1andv23tagswithalbumimage.mp3");
+
         System.out.println("Length of this mp3 is: " + mp3file.getLengthInSeconds() + " seconds");
         System.out.println("Bitrate: " + mp3file.getLengthInSeconds() + " kbps " + (mp3file.isVbr() ? "(VBR)" : "(CBR)"));
         System.out.println("Sample rate: " + mp3file.getSampleRate() + " Hz");

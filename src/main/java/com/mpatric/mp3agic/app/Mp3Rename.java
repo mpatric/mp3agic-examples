@@ -3,6 +3,7 @@ package com.mpatric.mp3agic.app;
 import java.io.File;
 import java.io.IOException;
 
+import com.mpatric.mp3agic.app.FileUtils;
 import com.mpatric.mp3agic.BaseException;
 import com.mpatric.mp3agic.BufferTools;
 import com.mpatric.mp3agic.ID3Wrapper;
@@ -23,13 +24,13 @@ public class Mp3Rename extends BaseApp {
 	public Mp3Rename(String filename, String rename) {
 		try {
 			String newFilename = composeNewFilename(filename, rename);
-			String newFilenameWithPathAndExtension = extractPath(filename) + newFilename + extractExtension(filename);
+			String newFilenameWithPathAndExtension = FileUtils.extractPath(filename) + newFilename + FileUtils.extractExtension(filename);
 			renameFile(filename, newFilenameWithPathAndExtension);
-			printOut(extractFilename(newFilenameWithPathAndExtension));
+			printOut(FileUtils.extractFilename(newFilenameWithPathAndExtension));
 		} catch (BaseException e) {
-			printError("ERROR processing \"" + extractFilename(filename) + "\" - " + e.getDetailedMessage());
+			printError("ERROR processing \"" + FileUtils.extractFilename(filename) + "\" - " + e.getDetailedMessage());
 		} catch (Exception e) {
-			printError("ERROR processing \"" + extractFilename(filename) + "\" - " + formatExceptionMessage(e));
+			printError("ERROR processing \"" + FileUtils.extractFilename(filename) + "\" - " + formatExceptionMessage(e));
 		}
 	}
 	
@@ -68,7 +69,7 @@ public class Mp3Rename extends BaseApp {
 			File originalFile = new File(filename);
 			File renamedFile = new File(newFilename);
 			if (renamedFile.exists()) {
-				throw new BaseException("File with destination name \"" + extractFilename(newFilename) + "\" already exists");
+				throw new BaseException("File with destination name \"" + FileUtils.extractFilename(newFilename) + "\" already exists");
 			}
 			originalFile.renameTo(renamedFile);
 		}

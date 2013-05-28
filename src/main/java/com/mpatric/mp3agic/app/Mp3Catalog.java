@@ -2,6 +2,7 @@ package com.mpatric.mp3agic.app;
 
 import java.io.UnsupportedEncodingException;
 
+import com.mpatric.mp3agic.app.FileUtils;
 import com.mpatric.mp3agic.BaseException;
 import com.mpatric.mp3agic.BufferTools;
 import com.mpatric.mp3agic.ID3Wrapper;
@@ -25,9 +26,9 @@ public class Mp3Catalog extends BaseApp {
 			mp3file = new Mp3File(filename);
 			catalog();
 		} catch (BaseException e) {
-			printError("ERROR processing " + extractFilename(filename) + " - " + e.getDetailedMessage());
+			printError("ERROR processing " + FileUtils.extractFilename(filename) + " - " + e.getDetailedMessage());
 		} catch (Exception e) {
-			printError("ERROR processing " + extractFilename(filename) + " - " + formatExceptionMessage(e));
+			printError("ERROR processing " + FileUtils.extractFilename(filename) + " - " + formatExceptionMessage(e));
 		}
 	}
 	
@@ -40,7 +41,7 @@ public class Mp3Catalog extends BaseApp {
 	}
 
 	private void catalogMp3Fields(StringBuffer cat) {
-		catalogField(cat, extractFilename(mp3file.getFilename()));
+		catalogField(cat, FileUtils.extractFilename(mp3file.getFilename()));
 		catalogField(cat, Long.toString(mp3file.getLength()));
 		catalogField(cat, Long.toString(mp3file.getLengthInSeconds()));
 		catalogField(cat, mp3file.getVersion());

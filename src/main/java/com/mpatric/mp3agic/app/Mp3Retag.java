@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import com.mpatric.mp3agic.app.FileUtils;
 import com.mpatric.mp3agic.BaseException;
 import com.mpatric.mp3agic.BufferTools;
 import com.mpatric.mp3agic.EncodedText;
@@ -51,16 +52,16 @@ public class Mp3Retag extends BaseApp {
 			boolean hasImage = false;
 			if (hasId3v2Tag && mp3file.getId3v2Tag().getAlbumImage() != null) hasImage = true;
 			if (! hasId3v1Tag && ! hasId3v2Tag) {
-				printError("ERROR processing \"" + extractFilename(filename) + "\" - no ID3 tags found");
+				printError("ERROR processing \"" + FileUtils.extractFilename(filename) + "\" - no ID3 tags found");
 			} else {
 				boolean hasCustomTag = mp3file.hasCustomTag();
 				if (hasCustomTag && mp3file.getCustomTag().length > CUSTOM_TAG_WARNING_THRESHOLD) {
-					printError("WARNING processing \"" + extractFilename(filename) + "\" - custom tag is " + mp3file.getCustomTag().length + " bytes, potential corrupt file");
+					printError("WARNING processing \"" + FileUtils.extractFilename(filename) + "\" - custom tag is " + mp3file.getCustomTag().length + " bytes, potential corrupt file");
 				}
 				retag();
 				StringBuffer message = new StringBuffer();
 				message.append("Retagged \"");
-				message.append(extractFilename(mp3file.getFilename()));
+				message.append(FileUtils.extractFilename(mp3file.getFilename()));
 				message.append("\"");
 				if (! hasId3v1Tag) message.append(", added ID3v1 tag");
 				if (! hasId3v2Tag) message.append(", added ID3v2 tag");
@@ -77,10 +78,10 @@ public class Mp3Retag extends BaseApp {
 				printOut(message.toString());
 			}
 		} catch (BaseException e) {
-			printError("ERROR processing \"" + extractFilename(filename) + "\" - " + e.getDetailedMessage());
+			printError("ERROR processing \"" + FileUtils.extractFilename(filename) + "\" - " + e.getDetailedMessage());
 			if (mp3file != null) deleteFile(mp3file.getFilename() + RETAG_EXTENSION);
 		} catch (Exception e) {
-			printError("ERROR processing \"" + extractFilename(filename) + "\" - " + formatExceptionMessage(e));
+			printError("ERROR processing \"" + FileUtils.extractFilename(filename) + "\" - " + formatExceptionMessage(e));
 			if (mp3file != null) deleteFile(mp3file.getFilename() + RETAG_EXTENSION);
 		}
 	}
@@ -151,7 +152,7 @@ public class Mp3Retag extends BaseApp {
 	}
 
 	private boolean findAndSetAlbumImage(ID3Wrapper id3Wrapper) {
-		String path = extractPath(mp3file.getFilename());
+		String path = FileUtils.extractPath(mp3file.getFilename());
 		if (trySetAlbumImage(id3Wrapper, path + id3Wrapper.getArtist() + " - " + id3Wrapper.getAlbum())) {
 			return true;
 		}
@@ -176,7 +177,7 @@ public class Mp3Retag extends BaseApp {
 				return true;
 			}
 		}
-		printError("WARNING processing \"" + extractFilename(mp3file.getFilename()) + "\" - no album image found");
+		printError("WARNING processing \"" + FileUtils.extractFilename(mp3file.getFilename()) + "\" - no album image found");
 		return false;
 	}
 

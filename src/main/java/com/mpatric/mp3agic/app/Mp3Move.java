@@ -3,6 +3,7 @@ package com.mpatric.mp3agic.app;
 import java.io.File;
 import java.io.IOException;
 
+import com.mpatric.mp3agic.app.FileUtils;
 import com.mpatric.mp3agic.BaseException;
 import com.mpatric.mp3agic.BufferTools;
 import com.mpatric.mp3agic.ID3Wrapper;
@@ -27,9 +28,9 @@ public class Mp3Move extends BaseApp {
 			String destFilename = moveFile(filename, dest);
 			printOut(destFilename);
 		} catch (BaseException e) {
-			printError("ERROR processing \"" + extractFilename(filename) + "\" - " + e.getDetailedMessage());
+			printError("ERROR processing \"" + FileUtils.extractFilename(filename) + "\" - " + e.getDetailedMessage());
 		} catch (Exception e) {
-			printError("ERROR processing \"" + extractFilename(filename) + "\" - " + formatExceptionMessage(e));
+			printError("ERROR processing \"" + FileUtils.extractFilename(filename) + "\" - " + formatExceptionMessage(e));
 		}
 	}
 
