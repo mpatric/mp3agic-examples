@@ -3,14 +3,12 @@ package com.mpatric.mp3agic.app;
 import java.io.File;
 import java.io.IOException;
 
-import com.mpatric.mp3agic.app.FileUtils;
 import com.mpatric.mp3agic.BaseException;
 import com.mpatric.mp3agic.BufferTools;
 import com.mpatric.mp3agic.ID3Wrapper;
 import com.mpatric.mp3agic.InvalidDataException;
 import com.mpatric.mp3agic.Mp3File;
 import com.mpatric.mp3agic.UnsupportedTagException;
-import com.mpatric.mp3agic.Version;
 
 
 public class Mp3Move extends BaseApp {
@@ -83,9 +81,7 @@ public class Mp3Move extends BaseApp {
 	}
 
 	public static void main(String[] args) {
-		if (! parseArgs(args)) {
-			usage();
-		} else {
+		if (parseArgs(args)) {
 			new Mp3Move(filename, destination);
 		}
 	}
@@ -97,9 +93,5 @@ public class Mp3Move extends BaseApp {
 		filename = args[0];
 		destination = args[1];
 		return true;
-	}
-
-	private static void usage() {
-		System.out.println("mp3move [mp3agic " + Version.asString() + "]");
 	}
 }

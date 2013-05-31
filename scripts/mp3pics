@@ -1,7 +1,8 @@
-#!/bin/bash  
+#!/bin/sh
 if test "$1" = ""; then
+  VERSION=`java -cp $MP3AGIC_INSTALL_PATH/mp3agic-apps.jar com.mpatric.mp3agic.app.LibVersion`
   echo
-  java -cp @deploy-dir/mp3agic.jar com.mpatric.mp3agic.app.Mp3Pics
+  echo mp3pics $VERSION
   echo
   echo "Extracts the album art images from the specified mp3 file(s)"
   echo
@@ -9,7 +10,7 @@ if test "$1" = ""; then
   echo "Example: mp3pics myaudio/*.mp3"
   echo
   exit 2
-fi      
+fi
 fin=0
 while ! ((fin)); do
   if test "$1" = ""; then
@@ -17,7 +18,7 @@ while ! ((fin)); do
   else
     if [ -f "${1}" ]; then
       echo "FILE: ${1}"
-      java -cp @deploy-dir/mp3agic.jar com.mpatric.mp3agic.app.Mp3Pics "${1}"
+      java -cp $MP3AGIC_INSTALL_PATH/mp3agic-apps.jar com.mpatric.mp3agic.app.Mp3Pics "${1}"
     fi
     shift
   fi

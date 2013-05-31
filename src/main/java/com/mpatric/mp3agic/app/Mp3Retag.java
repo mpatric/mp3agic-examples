@@ -7,7 +7,6 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import com.mpatric.mp3agic.app.FileUtils;
 import com.mpatric.mp3agic.BaseException;
 import com.mpatric.mp3agic.BufferTools;
 import com.mpatric.mp3agic.EncodedText;
@@ -16,7 +15,6 @@ import com.mpatric.mp3agic.ID3v1Tag;
 import com.mpatric.mp3agic.ID3v23Tag;
 import com.mpatric.mp3agic.Mp3File;
 import com.mpatric.mp3agic.NotSupportedException;
-import com.mpatric.mp3agic.Version;
 
 
 public class Mp3Retag extends BaseApp {
@@ -266,9 +264,7 @@ public class Mp3Retag extends BaseApp {
 	}
 
 	public static void main(String[] args) {
-		if (! parseArgs(args)) {
-			usage();
-		} else {
+		if (parseArgs(args)) {
 			new Mp3Retag(filename);
 		}
 	}
@@ -318,9 +314,5 @@ public class Mp3Retag extends BaseApp {
 			return false;
 		}
 		return true;
-	}
-
-	private static void usage() {
-		System.out.println("mp3retag [mp3agic " + Version.asString() + "]");
 	}
 }

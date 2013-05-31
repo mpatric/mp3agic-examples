@@ -2,14 +2,12 @@ package com.mpatric.mp3agic.app;
 
 import java.io.UnsupportedEncodingException;
 
-import com.mpatric.mp3agic.app.FileUtils;
 import com.mpatric.mp3agic.BaseException;
 import com.mpatric.mp3agic.BufferTools;
 import com.mpatric.mp3agic.ID3Wrapper;
 import com.mpatric.mp3agic.ID3v1;
 import com.mpatric.mp3agic.ID3v2;
 import com.mpatric.mp3agic.Mp3File;
-import com.mpatric.mp3agic.Version;
 
 public class Mp3Catalog extends BaseApp {
 	
@@ -119,15 +117,9 @@ public class Mp3Catalog extends BaseApp {
 	}
 
 	public static void main(String[] args) {
-		if (args.length < 1) {
-			usage();
-		} else {
+		if (args.length > 0) {
 			String filename = args[0];
 			new Mp3Catalog(filename);
 		}
-	}
-
-	private static void usage() {
-		System.out.println("mp3cat [mp3agic " + Version.asString() + "]");
 	}
 }
