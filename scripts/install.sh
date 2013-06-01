@@ -4,9 +4,9 @@ if test "$1" = ""; then
   echo "This script installs the command line tools in the mp3agic-examples project"
   echo "into a local folder so they can be used from the command line."
   echo
-  echo "Usage: install.sh [install path]"
+  echo "Usage: scripts/install.sh [install path]"
   echo
-  echo "Example: install.sh /usr/local/mp3agic/"
+  echo "Example: scripts/install.sh \"/usr/local/mp3agic/\""
   echo
   exit 2
 fi
