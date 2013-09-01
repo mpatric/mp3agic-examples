@@ -27,8 +27,7 @@ if [[ $rc != 0 ]] ; then
   exit $rc
 fi
 
-cp target/mp3agic-examples-*-SNAPSHOT.jar target/mp3agic-apps.jar
-cp target/lib/mp3agic-*.jar target/mp3agic.jar
+cp target/mp3agic-examples-*-SNAPSHOT-jar-with-dependencies.jar target/mp3agic-apps.jar
 rc=$?
 if [[ $rc != 0 ]] ; then
   echo
@@ -47,7 +46,6 @@ if [[ $rc != 0 ]] ; then
 fi
 
 cp target/mp3agic-apps.jar "${1}/mp3agic-apps.jar"
-cp target/mp3agic.jar "${1}/mp3agic.jar"
 rc=$?
 if [[ $rc != 0 ]] ; then
   echo
