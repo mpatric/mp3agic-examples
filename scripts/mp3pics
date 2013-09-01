@@ -1,6 +1,6 @@
 #!/bin/sh
 if test "$1" = ""; then
-  VERSION=`java -cp "$MP3AGIC_INSTALL_PATH/mp3agic-apps.jar:$MP3AGIC_INSTALL_PATH/mp3agic.jar" com.mpatric.mp3agicapp.LibVersion`
+  VERSION=`java -cp "$MP3AGIC_INSTALL_PATH/mp3agic-apps.jar:$MP3AGIC_INSTALL_PATH/mp3agic.jar" com.mpatric.mp3agic.app.LibVersion`
   echo
   echo mp3pics $VERSION
   echo
@@ -18,7 +18,7 @@ while ! ((fin)); do
   else
     if [ -f "${1}" ]; then
       echo "FILE: ${1}"
-      java -cp "$MP3AGIC_INSTALL_PATH/mp3agic-apps.jar:$MP3AGIC_INSTALL_PATH/mp3agic.jar" com.mpatric.mp3agicapp.Mp3Pics "${1}"
+      java -cp "$MP3AGIC_INSTALL_PATH/mp3agic-apps.jar:$MP3AGIC_INSTALL_PATH/mp3agic.jar" com.mpatric.mp3agic.app.Mp3Pics "${1}"
     fi
     shift
   fi
